@@ -15,6 +15,7 @@
     "flowbite": "^1.8.1",
     "sass": "^1.68.0",
     "tailwindcss": "^3.3.3",
+    "vercel": "^32.3.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4"
   },
