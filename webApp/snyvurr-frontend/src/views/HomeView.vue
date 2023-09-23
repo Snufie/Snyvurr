@@ -62,7 +62,7 @@
               <div>
                 <label for="email" class="block mb-2 text-sm font-medium text-snytext dark:text-white">Your
                   email</label>
-                <input type="email" v-model="Email" id="email"
+                <input type="email" v-model="User" id="email"
                   class="bg-gray-50 border border-gray-300 text-snytext text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5"
                   placeholder="example@mail.com" required>
               </div>
@@ -78,14 +78,6 @@
                 <input type="password" v-model="Password" id="password" placeholder="••••••••"
                   class="bg-gray-50 border border-gray-300 text-snytext text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5"
                   required>
-              </div>
-              <div>
-                <label for="Cpassword" class="flex mb-2 text-sm font-medium text-snytext dark:text-white">
-                  Confirm password</label>
-                <input type="password" v-model="ConfirmPassword" id="Cpassword" placeholder="••••••••"
-                  class="bg-gray-50 border border-gray-300 text-snytext text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5"
-                  required>
-                <label v-if="PswNoMatch" class="mb-2 text-sm font-medium text-red-600">Passwords don't match!</label>
               </div>
               <button type="submit"
                 class="w-full text-white bg-vida-loca-500 hover:bg-vida-loca-700 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800">Login
@@ -140,7 +132,7 @@
               <div>
                 <label for="Cpassword" class="flex mb-2 text-sm font-medium text-snytext dark:text-white">
                   Confirm password</label>
-                <input type="password" v-model="ConfirmPassword" id="Cpassword" placeholder="••••••••"
+                <input type="password" @input="checkPsw" v-model="ConfirmPassword" id="Cpassword" placeholder="••••••••"
                   class="bg-gray-50 border border-gray-300 text-snytext text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5"
                   required>
                 <label v-if="PswNoMatch" class="mb-2 text-sm font-medium text-red-600">Passwords don't match!</label>
@@ -164,10 +156,66 @@
 
 <script>
 import axios from 'axios'
-import { ref } from 'vue'
+import { api_key } from '../../config.js'
 import { RouterLink } from 'vue-router';
 
-const WantstoLogin = ref(false)
+export default {
+  name: 'HomeView',
+  data() {
+    return {
+      Email: '',
+      User: '',
+      Password: '',
+      ConfirmPassword: '',
+      PswNoMatch: false,
+      isTyping: false,
+    }
+  },
+  methods: {
+    async login() {
+      try {
+        const response = await axios.get('https://api-snyvurr.onrender.com/login', {
+          headers: {
+            "Z_API_KEY": api_key
+          },
+          user: this.User,
+          password: this.Password
+        });
+
+        if (response.status == 200) {
+          this.$router.push('/profile')
+        }
+      } catch (error) {
+        console.log("An error occured:", error)
+      }
+    },
+    async register() {
+      try {
+        const response = await axios.post('https://api-snyvurr.onrender.com/register', {
+          headers: {
+            "Z_API_KEY": api_key
+          },
+          email: this.Email,
+          user: this.User,
+          password: this.Password,
+          confirm_password: this.ConfirmPassword
+        });
+
+
+      } catch (error) {
+        console.log("An error occured:", error)
+      }
+    },
+    async checkPsw() {
+      if (this.Password != this.ConfirmPassword) {
+        this.PswNoMatch = true
+      } else {
+        this.PswNoMatch = false
+      }
+    }
+  }
+}
+
 </script>
 
 <style lang="scss" scoped></style>

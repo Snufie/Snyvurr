@@ -28,3 +28,6 @@ coverage
 *.sw?
 
 .vercel
+
+config.js
+../snyvurr-backend/.env
