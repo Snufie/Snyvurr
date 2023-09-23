@@ -8,7 +8,7 @@ import re
 
 API_key = "boobies"
 app = Flask(__name__)
-CORS(app, resources={r"/login": {"origins": "https://snyvurr.vercel.app"}})
+CORS(app)
 
 env = dotenv.find_dotenv("./.env")
 uri = dotenv.get_key(env, "uri")

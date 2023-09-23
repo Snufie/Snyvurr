@@ -186,6 +186,7 @@ export default {
         );
 
         if (response.status == 200) {
+          localStorage.setItem('token', response.data.token)
           this.$router.push('/profile')
         }
       } catch (error) {
