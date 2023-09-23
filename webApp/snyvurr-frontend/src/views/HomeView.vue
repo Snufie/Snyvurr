@@ -156,7 +156,7 @@
 
 <script>
 import axios from 'axios'
-import { api_key } from '../../config.js'
+import { API_KEY } from '../env.js'
 import { RouterLink } from 'vue-router';
 
 export default {
@@ -176,7 +176,7 @@ export default {
       try {
         const response = await axios.get('https://api-snyvurr.onrender.com/login', {
           headers: {
-            "Z_API_KEY": api_key
+            "Z_API_KEY": API_KEY
           },
           user: this.User,
           password: this.Password
@@ -193,7 +193,7 @@ export default {
       try {
         const response = await axios.post('https://api-snyvurr.onrender.com/register', {
           headers: {
-            "Z_API_KEY": api_key
+            "Z_API_KEY": API_KEY
           },
           email: this.Email,
           user: this.User,
