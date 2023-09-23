@@ -25,7 +25,7 @@ except Exception as e:
 api_key = "boobies"
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET'])
 def login():
     print("recieved request")
     data = request.get_json()
