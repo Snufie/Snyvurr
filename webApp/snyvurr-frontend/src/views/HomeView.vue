@@ -156,8 +156,11 @@
 
 <script>
 import axios from 'axios'
-import { API_KEY } from '../env.js'
+// import { API_KEY } from '../env.js'
 import { RouterLink } from 'vue-router';
+
+const API_KEY = process.env.VUE_APP_API_KEY
+console.log(API_KEY)
 
 export default {
   name: 'HomeView',
@@ -174,13 +177,15 @@ export default {
   methods: {
     async login() {
       try {
-        const response = await axios.get('https://api-snyvurr.onrender.com/login', {
-          headers: {
-            "Z_API_KEY": API_KEY
-          },
+        const response = await axios.post('https://api-snyvurr.onrender.com/login', {
           user: this.User,
           password: this.Password
-        });
+        }, {
+          headers: {
+            "Z_API_KEY": API_KEY
+          }
+        }
+        );
 
         if (response.status == 200) {
           this.$router.push('/profile')

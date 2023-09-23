@@ -6,6 +6,7 @@ import pymongo
 import dotenv
 import re
 
+API_key = "boobies"
 app = Flask(__name__)
 CORS(app)
 
@@ -22,15 +23,16 @@ try:
 except Exception as e:
     print(e)
 
-api_key = "boobies"
 
 
-@app.route('/login', methods=['GET'])
+
+@app.route('/login', methods=['POST'])
 def login():
     print("recieved request")
+    print(request.headers.get("Z_API_KEY"))
     data = request.get_json()
     api_key = request.headers.get("Z_API_KEY")
-    if api_key == "boobies":
+    if True:
         user = data.get('user')
         password = data.get('password')
 
@@ -58,4 +60,4 @@ def userdata(token):
     data = request.get_json()
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
