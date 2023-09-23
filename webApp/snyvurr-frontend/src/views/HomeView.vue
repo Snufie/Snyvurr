@@ -156,11 +156,12 @@
 
 <script>
 import axios from 'axios'
-// import { API_KEY } from '../env.js'
+import { API_KEY } from '../env.js'
 import { RouterLink } from 'vue-router';
+import { test } from '../env.js'
 
-const API_KEY = process.env.VUE_APP_API_KEY
 console.log(API_KEY)
+console.log(test)
 
 export default {
   name: 'HomeView',

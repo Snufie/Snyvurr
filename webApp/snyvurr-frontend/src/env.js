@@ -1,1 +1,2 @@
-export const API_KEY = process.env.VUE_APP_API_KEY
+export const API_KEY = import.meta.env.VITE_API_KEY
+export const test = 'cheese'
