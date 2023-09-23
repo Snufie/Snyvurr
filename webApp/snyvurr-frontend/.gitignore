@@ -29,5 +29,5 @@ coverage
 
 .vercel
 
-config.js
+.env
 ../snyvurr-backend/.env
