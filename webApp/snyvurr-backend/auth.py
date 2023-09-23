@@ -29,9 +29,9 @@ except Exception as e:
 @app.route('/login', methods=['POST'])
 def login():
     print("recieved request")
-    print(request.headers.get("Z_API_KEY"))
+    print(request.headers.get("X-API_KEY"))
     data = request.get_json()
-    api_key = request.headers.get("Z_API_KEY")
+    api_key = request.headers.get("X-API_KEY")
     if True:
         user = data.get('user')
         password = data.get('password')

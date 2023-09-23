@@ -182,7 +182,7 @@ export default {
           password: this.Password
         }, {
           headers: {
-            "Z_API_KEY": API_KEY
+            "X-API_KEY": API_KEY
           }
         }
         );
@@ -198,7 +198,7 @@ export default {
       try {
         const response = await axios.post('https://api-snyvurr.onrender.com/register', {
           headers: {
-            "Z_API_KEY": API_KEY
+            "X-API_KEY": API_KEY
           },
           email: this.Email,
           user: this.User,
