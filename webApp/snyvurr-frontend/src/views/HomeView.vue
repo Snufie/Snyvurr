@@ -161,6 +161,7 @@ import { RouterLink } from 'vue-router';
 
 const API_KEY = import.meta.env.VITE_API_KEY
 
+
 export default {
   name: 'HomeView',
   data() {
@@ -171,6 +172,7 @@ export default {
       ConfirmPassword: '',
       PswNoMatch: false,
       isTyping: false,
+      apiKey: API_KEY
     }
   },
   methods: {
@@ -181,7 +183,7 @@ export default {
           password: this.Password
         }, {
           headers: {
-            "X-API_KEY": API_KEY
+            "X-API_KEY": this.apiKey
           }
         }
         );
