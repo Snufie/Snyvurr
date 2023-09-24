@@ -8,7 +8,9 @@ import re
 
 API_key = "boobies"
 app = Flask(__name__)
-CORS(app)
+# Sta toegang toe vanuit je Vue.js-domein
+CORS(app, origins=["https://snyvurr.vercel.app", "http://localhost:5173"])
+
 
 env = dotenv.find_dotenv("./.env")
 uri = dotenv.get_key(env, "uri")
@@ -24,6 +26,10 @@ except Exception as e:
     print(e)
 
 
+@app.after_request()
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', 'https://snyvurr.vercel.app')
+    return response
 
 
 @app.route('/login', methods=['POST'])
