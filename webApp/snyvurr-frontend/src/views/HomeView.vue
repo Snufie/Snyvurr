@@ -156,9 +156,10 @@
 
 <script>
 import axios from 'axios'
-import { API_KEY } from '../env.js'
+// import { API_KEY } from '../env.js'
 import { RouterLink } from 'vue-router';
 
+const API_KEY = import.meta.env.VITE_API_KEY
 
 export default {
   name: 'HomeView',
