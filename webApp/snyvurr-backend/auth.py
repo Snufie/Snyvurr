@@ -49,7 +49,7 @@ def login():
         if user != None:
                 # Gebruiker is ingelogd, genereer een autorisatietoken en stuur het terug
                 response = jsonify({"token": user['token']}),200
-                response.headers.add('Access-Control-Allow-Origin', 'https://snyvurr.vercel.app')
+                # response.headers.add('Access-Control-Allow-Origin', 'https://snyvurr.vercel.app')
                 return response
         else:
             return jsonify({"error": "Ongeldige inloggegevens"}), 401
