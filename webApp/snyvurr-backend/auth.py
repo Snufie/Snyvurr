@@ -26,7 +26,7 @@ except Exception as e:
     print(e)
 
 
-@app.after_request()
+@app.after_request
 def after_request(response):
     response.headers.add('Access-Control-Allow-Origin', 'https://snyvurr.vercel.app')
     return response
