@@ -177,7 +177,8 @@ export default {
   },
   methods: {
     async login() {
-      console.log(this.apiKey)
+      console.log(process.env.VUE_APP_test)
+      console.log(import.meta.env.VITE_API_KEY)
       try {
         const response = await axios.post('https://api-snyvurr.onrender.com/login', {
           user: this.User,
