@@ -26,10 +26,7 @@ except Exception as e:
     print(e)
 
 
-@app.after_request
-def after_request(response):
-    response.headers.add('Access-Control-Allow-Origin', 'https://snyvurr.vercel.app')
-    return response
+
 
 
 @app.route('/login', methods=['POST'])
@@ -38,7 +35,7 @@ def login():
     print(request.headers.get("X-API_KEY"))
     data = request.get_json()
     api_key = request.headers.get("X-API_KEY")
-    if True:
+    if api_key == API_key:
         user = data.get('user')
         password = data.get('password')
 
@@ -51,8 +48,11 @@ def login():
         user = users.find_one({identifier: user, "password": password})
         if user != None:
                 # Gebruiker is ingelogd, genereer een autorisatietoken en stuur het terug
-                return jsonify({"token": {user['token']}}), 200
-        else: return jsonify({"error": "Ongeldige inloggegevens"}), 401
+                response = jsonify({"token": user['token']}),200
+                response.headers.add('Access-Control-Allow-Origin', 'https://snyvurr.vercel.app')
+                return response
+        else:
+            return jsonify({"error": "Ongeldige inloggegevens"}), 401
     else:
         return jsonify({"error": "Geen geldige API key"}), 401
 
