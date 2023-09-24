@@ -177,6 +177,7 @@ export default {
   },
   methods: {
     async login() {
+      console.log(this.apiKey)
       try {
         const response = await axios.post('https://api-snyvurr.onrender.com/login', {
           user: this.User,
