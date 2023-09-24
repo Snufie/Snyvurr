@@ -12,10 +12,11 @@ app = Flask(__name__)
 CORS(app, origins=["https://snyvurr.vercel.app", "http://localhost:5173"])
 
 
-env = dotenv.find_dotenv("./.env")
+env = dotenv.find_dotenv()
+print(env)
 uri = dotenv.get_key(env, "uri")
 # Create a new client and connect to the server
-client = MongoClient(uri)
+client = MongoClient(uri, server_api=ServerApi('1'))
 DB = client['snyvurrDB']
 
 # Send a ping to confirm a successful connection
