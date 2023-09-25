@@ -1,57 +1,47 @@
 <template>
     <div class="profile">
-        <h1>This is an about page</h1>
+        <div class="flex flex-wrap flex-col h-fit ml-4 self-start align-top">
+            <h1 class="text-5xl font-black tracking-tight leading-snug text-left">Hey, {{ User }}!</h1>
+            <h2 class="ml-4 text-xl font-medium tracking-tight leading-4 text-left">Welcome to your profile page.</h2>
+        </div>
+
+        <section class="rounded-md mt-6 p-6 ml-6 w-2/3 bg-gradient-to-br from-green-200 to-gray-50">
+            <div>
+                <h1 class="text-5xl font-bold tracking-tight">{{ User }}</h1>
+
+            </div>
+        </section>
     </div>
 </template>
 
-<script setup>
-import router from '../router';
-import axios from 'axios';
-
-usertoken = localStorage.getItem('token')
-if (usertoken == null || usertoken == undefined) {
-    router.push('/')
-}
-
-async function getUser() {
-    try {
-        const response = await axios.get('/getUser?user=' + usertoken)
-        if (response.status == 200) {
-            console.log(response.data)
-        }
-    } catch (error) {
-
-    }
-
-
-}
-</script>
-
 <script>
 import axios from 'axios';
-import { ref } from 'vue';
 
 export default {
     data() {
         return {
-
+            User: ''
         }
     },
     methods: {
-        logout() {
-            localStorage.removeItem('token')
-            router.push('/')
+        async getProfile() {
+            const token = localStorage.getItem('token')
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+            try {
+                const res = await axios.get('http://api-snyvurr.onrender.com/getUser', config)
+                console.log(res.data)
+                this.User = res.data
+            }
+            catch (err) {
+                console.log('An error occured: ' + err)
+            }
         }
     }
 }
 </script>
 
-<style>
-@media (min-width: 1024px) {
-    .about {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-    }
-}
-</style>
+<style lang="scss" scoped></style>

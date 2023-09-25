@@ -1,14 +1,52 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import { ref } from 'vue'
+import axios from 'axios'
+
+const loggedin = ref(false)
+
+async function checkLogin() {
+  try {
+    const response = await axios.get('http://api-snyvurr.onrender.com/auth/checklogin', {
+      headers: {
+        "X-API_KEY": import.meta.env.VITE_API_KEY
+      }
+    })
+    if (response.data == true) {
+      loggedin.value = true
+    }
+    else {
+      loggedin.value = false
+    }
+  }
+  catch (error) {
+    console.log("An error occurred:", error)
+  }
+}
+
 </script>
 
 <template>
-  <header>
+  <header v-if="!loggedin">
     <div class="navbar overflow-hidden flex content-center dark:bg-vida-loca-800 dark:text-vida-loca-25">
       <h1 class="h1 self-center ml-4">Snyvurr Network</h1>
       <div class="mx-auto">
         <RouterLink class="text-2xl hover:text-snytext-lite hover:transition-colors font-bold" to="/">Home</RouterLink>
         <RouterLink class="text-2xl hover:text-snytext-lite hover:transition-colors font-bold" to="/about">About
+        </RouterLink>
+      </div>
+    </div>
+  </header>
+  <header v-else>
+    <div class="navbar overflow-hidden flex content-center dark:bg-vida-loca-800 dark:text-vida-loca-25">
+      <h1 class="h1 self-center ml-4">Snyvurr Network</h1>
+      <div class="mx-auto">
+        <RouterLink class="text-2xl hover:text-snytext-lite hover:transition-colors font-bold" to="/">Home</RouterLink>
+        <RouterLink class="text-2xl hover:text-snytext-lite hover:transition-colors font-bold" to="/profile">Profile
+        </RouterLink>
+        <RouterLink class="text-2xl hover:text-snytext-lite hover:transition-colors font-bold" to="/social">Connect
+        </RouterLink>
+        <RouterLink class="text-2xl hover:text-snytext-lite hover:transition-colors font-bold" to="/functions">Utilities
         </RouterLink>
       </div>
     </div>

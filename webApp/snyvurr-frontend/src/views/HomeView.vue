@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="py-4 pl-4">
-      <h1 class=" text-5xl font-black tracking-tight leading-snug text-center">Welcome to Snyvurr Network</h1>
+      <h1 class="text-5xl font-black tracking-tight leading-snug text-center">Welcome to Snyvurr Network</h1>
       <img class="w-3/6 h-3/6 mx-auto" src="../assets/construction_site.svg" alt="under construction">
       <p class="bg-vida-loca-50 w-11/12 text-center px-4 py-2 rounded-md mx-auto">
         This is the home page.
@@ -137,7 +137,7 @@
                   required>
                 <label v-if="PswNoMatch" class="mb-2 text-sm font-medium text-red-600">Passwords don't match!</label>
               </div>
-              <button type="submit"
+              <button type="submit" v-bind:disabled="!PswNoMatch"
                 class="w-full text-white bg-vida-loca-500 hover:bg-vida-loca-700 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800">
                 Create your account</button>
               <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
@@ -156,7 +156,6 @@
 
 <script>
 import axios from 'axios'
-// import { API_KEY } from '../env.js'
 import { RouterLink } from 'vue-router';
 
 const API_KEY = import.meta.env.VITE_API_KEY
@@ -167,7 +166,6 @@ export default {
   data() {
     return {
       Email: '',
-      User: '',
       Password: '',
       ConfirmPassword: '',
       PswNoMatch: false,
@@ -177,15 +175,14 @@ export default {
   },
   methods: {
     async login() {
-      console.log(import.meta.env.VITE_test)
-      console.log(import.meta.env.VITE_API_KEY)
       try {
         const response = await axios.post('https://api-snyvurr.onrender.com/login', {
-          user: this.User,
+          email: this.Email,
           password: this.Password
         }, {
           headers: {
-            "X-API_KEY": this.apiKey
+            "X-API_KEY": this.apiKey,
+            Authorization: "Basic " + Buffer.from(this.Email + ":" + this.Password, "base64")
           }
         }
         );
@@ -195,7 +192,7 @@ export default {
           this.$router.push('/profile')
         }
       } catch (error) {
-        console.log("An error occured:", error)
+        console.log("An error occurred:", error)
       }
     },
     async register() {
@@ -212,7 +209,7 @@ export default {
 
 
       } catch (error) {
-        console.log("An error occured:", error)
+        console.log("An error occurred:", error)
       }
     },
     async checkPsw() {
