@@ -37,16 +37,17 @@ except Exception as e:
 
 @app.before_request
 def api_check():
-    print("Checking API key...")
-    provided_key = request.headers.get("X-API_KEY")
-    print(f"API key to match with: {API_key}")
-    print(f"API key provided: {provided_key}")
-    if provided_key != API_key:
-        return jsonify({"error": "Invalid API key"}), 401
-    elif provided_key == API_key:
-        return jsonify({"message": "Valid API key"}), 200
-    else:
-        return jsonify({"error": "Something went wrong"}), 500
+    if request.method != "OPTIONS":
+        print("Checking API key...")
+        provided_key = request.headers.get("X-API_KEY")
+        print(f"API key to match with: {API_key}")
+        print(f"API key provided: {provided_key}")
+        if provided_key != API_key:
+            return jsonify({"error": "Invalid API key"}), 401
+        elif provided_key == API_key:
+            return jsonify({"message": "Valid API key"}), 200
+        else:
+            return jsonify({"error": "Something went wrong"}), 500
 
 
 @auth.verify_password
