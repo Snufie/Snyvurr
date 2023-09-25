@@ -161,6 +161,7 @@ import { Buffer, btoa } from 'buffer'
 
 
 const API_KEY = import.meta.env.VITE_API_KEY
+console.log(API_KEY)
 
 
 export default {
@@ -178,7 +179,7 @@ export default {
   methods: {
     async login() {
       try {
-        console.log(this.Email, this.Password)
+        console.log(this.Email, this.Password, this.apiKey)
         const encoder = new TextEncoder()
         const data = encoder.encode(`${this.Email}:${this.Password}`)
         const authCred = Buffer(String.fromCharCode.apply(null, data))
