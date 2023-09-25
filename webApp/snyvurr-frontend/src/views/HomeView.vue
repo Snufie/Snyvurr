@@ -178,7 +178,7 @@ export default {
   methods: {
     async login() {
       try {
-        const authCred = Buffer.Buffer.from(this.Email + ":" + this.Password, "base64")
+        const authCred = Buffer.Buffer.from(`${this.Email}:${this.Password}`).toString('base64')
         const response = await axios.post('https://api-snyvurr.onrender.com/login', {
           email: this.Email,
           password: this.Password
