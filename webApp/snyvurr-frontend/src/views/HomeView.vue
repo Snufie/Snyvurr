@@ -62,7 +62,7 @@
               <div>
                 <label for="email" class="block mb-2 text-sm font-medium text-snytext dark:text-white">Your
                   email</label>
-                <input type="email" v-model="User" id="email"
+                <input type="email" v-model="Email" id="email"
                   class="bg-gray-50 border border-gray-300 text-snytext text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5"
                   placeholder="example@mail.com" required>
               </div>
