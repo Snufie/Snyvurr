@@ -35,6 +35,7 @@ export default {
                 const res = await axios.get('http://api-snyvurr.onrender.com/getUser', config)
                 console.log(res.data)
                 this.User = res.data
+                return this.User = res.data
             }
             catch (err) {
                 console.log('An error occured: ' + err)
