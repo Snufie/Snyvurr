@@ -179,7 +179,6 @@ export default {
   methods: {
     async login() {
       try {
-        console.log(this.Email, this.Password, this.apiKey)
         const encoder = new TextEncoder()
         const data = encoder.encode(`${this.Email}:${this.Password}`)
         const authCred = Buffer(String.fromCharCode.apply(null, data))
