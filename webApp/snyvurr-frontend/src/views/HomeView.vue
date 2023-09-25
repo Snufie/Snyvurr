@@ -157,6 +157,8 @@
 <script>
 import axios from 'axios'
 import { RouterLink } from 'vue-router';
+import Buffer from 'buffer'
+
 
 const API_KEY = import.meta.env.VITE_API_KEY
 
