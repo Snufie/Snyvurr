@@ -157,7 +157,7 @@
 <script>
 import axios from 'axios'
 import { RouterLink } from 'vue-router';
-import Buffer from 'buffer'
+import { Buffer } from 'buffer'
 
 
 const API_KEY = import.meta.env.VITE_API_KEY
@@ -178,7 +178,8 @@ export default {
   methods: {
     async login() {
       try {
-        const authCred = Buffer.Buffer.from(`${this.Email}:${this.Password}`).toString('base64')
+        console.log(this.Email, this.Password)
+        const authCred = Buffer.from(this.Email, this.Password).toString('base64')
         const response = await axios.post('https://api-snyvurr.onrender.com/login', {
           email: this.Email,
           password: this.Password
