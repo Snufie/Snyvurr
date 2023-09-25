@@ -183,8 +183,6 @@ export default {
         const encoder = new TextEncoder()
         const data = encoder.encode(`${this.Email}:${this.Password}`)
         const authCred = Buffer(String.fromCharCode.apply(null, data))
-        const test = Buffer.from("test:test", "base64")
-        console.log(test, test.toString('base64'))
         const response = await axios.post('https://api-snyvurr.onrender.com/login', {
           email: this.Email,
           password: this.Password
