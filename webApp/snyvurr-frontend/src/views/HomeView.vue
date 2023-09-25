@@ -179,7 +179,7 @@ export default {
     async login() {
       try {
         console.log(this.Email, this.Password)
-        const authCred = Buffer.from(this.Email + " " + this.Password).toString('base64')
+        const authCred = window.Buffer.from(this.Email + " " + this.Password).toString('base64')
         const response = await axios.post('https://api-snyvurr.onrender.com/login', {
           email: this.Email,
           password: this.Password
