@@ -71,7 +71,7 @@ def verify_token(token):
     session_token = session.get("auth_token")
     print(session_token)
     if token == session_token:
-        return True
+        return jsonify({"message": "Token verified"}), 200
     else:
         return False
 
