@@ -62,7 +62,7 @@ export default {
                 }
             }
             try {
-                const res = await axios.get('http://api-snyvurr.onrender.com/getUser', config)
+                const res = await axios.get('https://api-snyvurr.onrender.com/getUser', config)
                 console.log(res.data)
                 this.User = res.data
                 return this.User
