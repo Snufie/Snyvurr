@@ -73,7 +73,7 @@ def verify_token(token):
     if token == session_token:
         return jsonify({"message": "Token verified"}), 200
     else:
-        return False
+        return jsonify({"error": "Token doesn't match"}), 401
 
 
 @app.route('/login', methods=['POST'])
