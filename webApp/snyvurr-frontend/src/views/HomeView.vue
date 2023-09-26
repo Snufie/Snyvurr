@@ -23,7 +23,7 @@
             to use and learn about too.
           </p>
           <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-            <a data-modal-target="login-modal" data-modal-toggle="login-modal"
+            <a data-modal-target="login-modal" data-modal-show="login-modal"
               class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-vida-loca-500 hover:transition-colors hover:bg-vida-loca-600 focus:ring-4 focus:ring-emerald-300 dark:focus:ring-emerald-900">
               Get started
               <svg class="w-3.5 h-3.5 ml-2 text-vida-loca-25" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@
                   class="bg-gray-50 border border-gray-300 text-snytext text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5"
                   required>
               </div>
-              <button type="submit"
+              <button type="submit" data-modal-hide="login-modal"
                 class="w-full text-white bg-vida-loca-500 hover:bg-vida-loca-700 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800">Login
                 to your account</button>
               <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
