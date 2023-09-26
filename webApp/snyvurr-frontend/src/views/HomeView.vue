@@ -23,7 +23,7 @@
             to use and learn about too.
           </p>
           <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-            <a data-modal-target="login-modal" data-modal-show="login-modal"
+            <button data-modal-target="login-modal" data-modal-show="login-modal"
               class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-vida-loca-500 hover:transition-colors hover:bg-vida-loca-600 focus:ring-4 focus:ring-emerald-300 dark:focus:ring-emerald-900">
               Get started
               <svg class="w-3.5 h-3.5 ml-2 text-vida-loca-25" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +31,7 @@
                 <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M1 5h12m0 0L9 1m4 4L9 9" />
               </svg>
-            </a>
+            </button>
             <RouterLink to="/about"
               class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-snytext rounded-lg border border-gray-300 hover:transition-colors hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
               Learn more</RouterLink>
