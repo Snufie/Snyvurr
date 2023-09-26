@@ -95,6 +95,9 @@ def register():
     data = request.get_json()
     email = data.get('email')
     password = data.get('password')
+    # TODO: add email validation
+    # TODO: API calls stats, maybe even in graph form
+    # TODO: add uuid to user. For snyvurrChat
     try:
         users.insert_one({"email": email, "password": generate_password_hash(password)})
     except Exception as e:
@@ -110,7 +113,10 @@ def userdata():
     users = DB['users']
     try:
         response = users.find_one({"email": user})
-        res = jsonify(response["email".split('@')[0]].capitalize()), 200
+        uname = response["email".split('@')[0]].capitalize()
+        email = response["email"]
+        #... add more data to return
+        res = jsonify({"username": uname, "email": email}), 200
     except:
         res = jsonify({"error": f"User with email/identifier '{user}' doesn't exist."}), 401
     return res
