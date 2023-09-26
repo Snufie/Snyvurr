@@ -46,11 +46,13 @@ const IsEditing = ref(false)
 
 <script>
 import axios from 'axios';
+const apiKey = import.meta.env.VITE_API_KEY
 
 export default {
     data() {
         return {
-            User: ''
+            User: '',
+            api_key: apiKey
         }
     },
     methods: {
@@ -58,6 +60,7 @@ export default {
             const token = localStorage.getItem('token')
             const config = {
                 headers: {
+                    "X-API_KEY": this.api_key,
                     Authorization: `Bearer ${token}`
                 }
             }
