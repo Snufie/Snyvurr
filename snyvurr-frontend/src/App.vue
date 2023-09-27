@@ -6,7 +6,7 @@ import axios from 'axios'
 
 async function checkLogin() {
   try {
-    const response = await axios.get('http://api-snyvurr.onrender.com/auth/checklogin', {
+    const response = await axios.get('https://api-snyvurr.onrender.com/auth/checklogin', {
       headers: {
         "X-API_KEY": import.meta.env.VITE_API_KEY
       }
