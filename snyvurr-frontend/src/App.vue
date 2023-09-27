@@ -36,7 +36,7 @@ async function vercelApitest() {
 </script>
 
 <template>
-  <header v-if="false">
+  <header v-if="true">
     <div class="navbar overflow-hidden flex content-center dark:bg-vida-loca-800 dark:text-vida-loca-25">
       <h1 class="h1 self-center ml-4">Snyvurr Network {{ vercelApitest() }}</h1>
       <div class="mx-auto">
