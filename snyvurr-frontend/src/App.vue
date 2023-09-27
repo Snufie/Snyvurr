@@ -4,24 +4,24 @@ import { ref } from 'vue'
 import axios from 'axios'
 
 
-async function checkLogin() {
-  try {
-    const response = await axios.get('https://api-snyvurr.onrender.com/auth/checklogin', {
-      headers: {
-        "X-API_KEY": import.meta.env.VITE_API_KEY
-      }
-    })
-    if (response.data == true) {
-      return true
-    }
-    else {
-      return false
-    }
-  }
-  catch (error) {
-    console.log("An error occurred:", error)
-  }
-}
+// async function checkLogin() {
+//   try {
+//     const response = await axios.get('https://api-snyvurr.onrender.com/auth/checklogin', {
+//       headers: {
+//         "X-API_KEY": import.meta.env.VITE_API_KEY
+//       }
+//     })
+//     if (response.data == true) {
+//       return true
+//     }
+//     else {
+//       return false
+//     }
+//   }
+//   catch (error) {
+//     console.log("An error occurred:", error)
+//   }
+// }
 
 async function vercelApitest() {
   try {
