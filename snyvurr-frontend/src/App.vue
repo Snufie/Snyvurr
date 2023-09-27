@@ -3,7 +3,6 @@ import { RouterLink, RouterView } from 'vue-router'
 import { ref } from 'vue'
 import axios from 'axios'
 
-const loggedin = ref(false)
 
 async function checkLogin() {
   try {
@@ -13,11 +12,21 @@ async function checkLogin() {
       }
     })
     if (response.data == true) {
-      loggedin.value = true
+      return true
     }
     else {
-      loggedin.value = false
+      return false
     }
+  }
+  catch (error) {
+    console.log("An error occurred:", error)
+  }
+}
+
+async function vercelApitest() {
+  try {
+    const response = await axios.get('https://snyvurr.vercel.app/api/index')
+    return response.data
   }
   catch (error) {
     console.log("An error occurred:", error)
@@ -27,9 +36,9 @@ async function checkLogin() {
 </script>
 
 <template>
-  <header v-if="!loggedin">
+  <header v-if="checkLogin() == false">
     <div class="navbar overflow-hidden flex content-center dark:bg-vida-loca-800 dark:text-vida-loca-25">
-      <h1 class="h1 self-center ml-4">Snyvurr Network</h1>
+      <h1 class="h1 self-center ml-4">Snyvurr Network {{ vercelApitest() }}</h1>
       <div class="mx-auto">
         <RouterLink class="text-2xl hover:text-snytext-lite hover:transition-colors font-bold" to="/">Home</RouterLink>
         <RouterLink class="text-2xl hover:text-snytext-lite hover:transition-colors font-bold" to="/about">About
