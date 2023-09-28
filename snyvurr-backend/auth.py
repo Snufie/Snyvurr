@@ -62,7 +62,7 @@ def verify_password(username, password):
         return user
     else:
         print("Passwords don't match")
-        return False
+        return
 
 @tauth.verify_token
 def verify_token(token):
