@@ -59,10 +59,11 @@ def verify_password(username, password):
     if check_password_hash(password_hash, password):
         print("Password verified")
         user = caller['email']
+        print(user)
+        return user
     else:
         print("Passwords don't match")
         return jsonify({"error": "Passwords don't match"}), 401
-    return jsonify(user)
 
 @tauth.verify_token
 def verify_token(token):
@@ -85,7 +86,8 @@ def login():
     token = create_access_token(identity=email)
     session['auth_token'] = token
     session['user'] = email
-    return jsonify({"token": token}), 200
+    res = jsonify({"token": token}), 200
+    return res
 
 
 @app.route('/register', methods=['POST'])
