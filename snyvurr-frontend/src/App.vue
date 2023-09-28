@@ -1,43 +1,13 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import axios from 'axios';
-
-
-// async function checkLogin() {
-//   try {
-//     const response = await axios.get('https://api-snyvurr.onrender.com/auth/checklogin', {
-//       headers: {
-//         "X-API_KEY": import.meta.env.VITE_API_KEY
-//       }
-//     })
-//     if (response.data == true) {
-//       return true
-//     }
-//     else {
-//       return false
-//     }
-//   }
-//   catch (error) {
-//     console.log("An error occurred:", error)
-//   }
-// }
-
-async function vercelApitest() {
-  try {
-    const response = await axios.get('https://snyvurr.vercel.app/api/index')
-    return response.data.message
-  }
-  catch (error) {
-    console.log("An error occurred:", error)
-  }
-}
+// import axios from 'axios';
 
 </script>
 
 <template>
   <header v-if="true">
     <div class="navbar overflow-hidden flex content-center dark:bg-vida-loca-800 dark:text-vida-loca-25">
-      <h1 class="h1 self-center ml-4">Snyvurr Network {{ vercelApitest() }}</h1>
+      <h1 class="h1 self-center ml-4">Snyvurr Network</h1>
       <div class="mx-auto">
         <RouterLink class="text-2xl hover:text-snytext-lite hover:transition-colors font-bold" to="/">Home</RouterLink>
         <RouterLink class="text-2xl hover:text-snytext-lite hover:transition-colors font-bold" to="/about">About
