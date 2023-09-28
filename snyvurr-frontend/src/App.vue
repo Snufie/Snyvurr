@@ -25,7 +25,7 @@ import axios from 'axios';
 async function vercelApitest() {
   try {
     const response = await axios.get('https://snyvurr.vercel.app/api/index')
-    return response.data
+    return response.data.message
   }
   catch (error) {
     console.log("An error occurred:", error)

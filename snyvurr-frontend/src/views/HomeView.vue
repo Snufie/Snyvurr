@@ -58,7 +58,7 @@
           </button>
           <div class="px-6 py-6 lg:px-8">
             <h3 class="mb-4 text-xl font-medium text-snytext dark:text-white">Login</h3>
-            <form class="space-y-6" @submit.prevent="login">
+            <form class="space-y-6" @submit.prevent="login()">
               <div>
                 <label for="email" class="block mb-2 text-sm font-medium text-snytext dark:text-white">Your
                   email</label>
@@ -112,7 +112,7 @@
           </button>
           <div class="px-6 py-6 lg:px-8">
             <h3 class="mb-4 text-xl font-medium text-snytext dark:text-white">Register</h3>
-            <form class="space-y-6" @submit.prevent="register">
+            <form class="space-y-6" @submit.prevent="register()">
               <div>
                 <label for="email" class="block mb-2 text-sm font-medium text-snytext dark:text-white">Your
                   email</label>
