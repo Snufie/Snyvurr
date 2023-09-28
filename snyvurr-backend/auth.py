@@ -62,7 +62,7 @@ def verify_password(username, password):
     else:
         print("Passwords don't match")
         return jsonify({"error": "Passwords don't match"}), 401
-    return user
+    return jsonify(user)
 
 @tauth.verify_token
 def verify_token(token):
