@@ -59,10 +59,10 @@ def verify_password(username, password):
     if check_password_hash(password_hash, password):
         print("Password verified")
         user = caller['email']
-        return user
     else:
         print("Passwords don't match")
-        return
+        return jsonify({"error": "Passwords don't match"}), 401
+    return user
 
 @tauth.verify_token
 def verify_token(token):
