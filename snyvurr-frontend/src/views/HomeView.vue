@@ -154,79 +154,71 @@
   </main>
 </template>
 
-<script>
+<script setup lang="ts">
 import axios from 'axios'
-import { RouterLink } from 'vue-router';
-import { Buffer, btoa } from 'buffer'
+import { RouterLink, useRouter } from 'vue-router';
 
 
-const API_KEY = import.meta.env.VITE_API_KEY
+const API_KEY = import.meta.env.VITE_API_KEY;
+const Email = $ref('');
+const User = $ref('');
+const Password = $ref('');
+const ConfirmPassword = $ref('');
+let PswNoMatch = $ref(false);
+const router = useRouter();
 
 
-
-export default {
-  name: 'HomeView',
-  data() {
-    return {
-      Email: '',
-      Password: '',
-      ConfirmPassword: '',
-      PswNoMatch: false,
-      isTyping: false,
-      apiKey: API_KEY
-    }
-  },
-  methods: {
-    async login() {
-      try {
-        const encoder = new TextEncoder()
-        const data = encoder.encode(`${this.Email}:${this.Password}`)
-        const authCred = Buffer(String.fromCharCode.apply(null, data))
-        const response = await axios.post('https://api-snyvurr.onrender.com/login', {
-          email: this.Email,
-          password: this.Password
-        }, {
-          headers: {
-            "X-API_KEY": this.apiKey,
-            Authorization: "Basic " + authCred
-          }
-        }
-        );
-
-        if (response.status == 200) {
-          localStorage.setItem('token', response.data.token)
-          this.$router.push('/profile')
-        }
-      } catch (error) {
-        console.log("An error occurred:", error)
-      }
-    },
-    async register() {
-      try {
-        const response = await axios.post('https://api-snyvurr.onrender.com/register', {
-          headers: {
-            "X-API_KEY": API_KEY
-          },
-          email: this.Email,
-          user: this.User,
-          password: this.Password,
-          confirm_password: this.ConfirmPassword
-        });
-
-
-      } catch (error) {
-        console.log("An error occurred:", error)
-      }
-    },
-    async checkPsw() {
-      if (this.Password != this.ConfirmPassword) {
-        this.PswNoMatch = true
-      } else {
-        this.PswNoMatch = false
+async function login() {
+  try {
+    const authCred = `${Email}` + ":" + `${Password}`
+    const response = await axios.post('https://api-snyvurr.onrender.com/login', {
+      email: Email,
+      password: Password
+    }, {
+      headers: {
+        "X-API_KEY": API_KEY,
+        Authorization: "Basic " + authCred
       }
     }
+    );
+
+    if (response.status == 200) {
+      localStorage.setItem('token', response.data.token)
+      router.push('/profile')
+    }
+  } catch (error) {
+    console.log("An error occurred:", error)
   }
 }
+async function register() {
+  try {
+    const response = await axios.post('https://api-snyvurr.onrender.com/register', {
+      headers: {
+        "X-API_KEY": API_KEY
+      },
+      email: Email,
+      user: User,
+      password: Password,
+      confirm_password: ConfirmPassword
+    })
+    if (response.status == 201) {
+      localStorage.setItem('token', response.data.token)
+      router.push('/profile')
+    }
+
+
+  } catch (error) {
+    console.log("An error occurred:", error)
+  }
+}
+async function checkPsw() {
+  if (Password != ConfirmPassword) {
+    PswNoMatch = true
+  } else {
+    PswNoMatch = false
+  }
+}
+
 
 </script>
 

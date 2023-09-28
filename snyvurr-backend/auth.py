@@ -95,14 +95,16 @@ def register():
     data = request.get_json()
     email = data.get('email')
     password = data.get('password')
+    token = create_access_token(identity=email)
+    session['auth_token'] = token
     # TODO: add email validation
     # TODO: API calls stats, maybe even in graph form
     # TODO: add uuid to user. For snyvurrChat
     try:
-        users.insert_one({"email": email, "password": generate_password_hash(password)})
+        users.insert_one({"email": email, "password": generate_password_hash(password), "token": token})
     except Exception as e:
         return jsonify({"error": e}), 500
-    return jsonify({"message": "User created"}), 200
+    return jsonify({"message": "User created"}), 201
 
 
 @app.route('/getUser', methods=['GET'])

@@ -1,3 +1,4 @@
 .vercel
 snyvurr-backend/.env
 snyvurr-backend/test.py
+node_modules

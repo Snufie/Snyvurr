@@ -2,12 +2,17 @@ import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
-import vue from '@vitejs/plugin-vue'
+import Vue from '@vitejs/plugin-vue'
+import VueMacros from 'unplugin-vue-macros/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue(),
+    VueMacros({
+      plugins: {
+        vue: Vue()
+      }
+    }),
     nodePolyfills({
       globals: {
         Buffer: true, // can also be 'build', 'dev', or false
@@ -18,7 +23,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src/main.js', import.meta.url))
+      '@': fileURLToPath(new URL('./src/main.ts', import.meta.url))
     }
   }
 })
