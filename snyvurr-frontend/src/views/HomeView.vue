@@ -204,6 +204,8 @@ async function register() {
     if (response.status == 201) {
       localStorage.setItem('token', response.data.token)
       router.push('/profile')
+    } else {
+      console.log("An error occurred:", response.status)
     }
 
 

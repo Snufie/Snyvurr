@@ -51,9 +51,13 @@ def api_check():
 
 
 @auth.verify_password
-def verify_password(username, password):
+def verify_password():
     print("recieved request\nVerifying password...")
     users = DB['users']
+    userPending = request.headers.get("Authorization")
+    print(userPending)
+    username = userPending.split(':')[0]
+    password = userPending.split(':')[1]
     caller = users.find_one({"email": username})
     password_hash = caller['password']
     if check_password_hash(password_hash, password):
@@ -129,6 +133,7 @@ def userdata():
     except:
         res = jsonify({"error": f"User with email/identifier '{user}' doesn't exist."}), 401
     return res
+
 
 if __name__ == '__main__':
     app.run(debug=True)
