@@ -159,7 +159,8 @@ import axios from 'axios'
 import { RouterLink, useRouter } from 'vue-router';
 
 
-const API_KEY = import.meta.env.VITE_API_KEY;
+const apiKey = import.meta.env.VITE_API_KEY;
+const apiURL = import.meta.env.VITE_API_URL;
 const Email = $ref('');
 const User = $ref('');
 const Password = $ref('');
@@ -171,12 +172,12 @@ const router = useRouter();
 async function login() {
   try {
     const authCred = `${Email}` + ":" + `${Password}`
-    const response = await axios.post('https://api-snyvurr.onrender.com/login', {
+    const response = await axios.post(`${apiURL}/login`, {
       email: Email,
       password: Password
     }, {
       headers: {
-        "X-API_KEY": API_KEY,
+        "X-API_KEY": apiKey,
         Authorization: "Basic " + authCred
       }
     }
@@ -192,9 +193,9 @@ async function login() {
 }
 async function register() {
   try {
-    const response = await axios.post('https://api-snyvurr.onrender.com/register', {
+    const response = await axios.post(`${apiURL}/register`, {
       headers: {
-        "X-API_KEY": API_KEY
+        "X-API_KEY": apiKey
       },
       email: Email,
       user: User,

@@ -45,6 +45,7 @@ const IsEditing = $ref(false)
 
 import axios from 'axios';
 const apiKey = import.meta.env.VITE_API_KEY
+const apiURL = import.meta.env.VITE_API_URL
 let user = $ref({ username: '', email: '' })
 const newEmail = $ref('')
 
@@ -57,7 +58,7 @@ async function getProfile() {
         }
     }
     try {
-        const res = await axios.get('https://api-snyvurr.onrender.com/getUser', config)
+        const res = await axios.get(`${apiURL}/getUser`, config)
         console.log(res.data)
         let user = res.data
         return user
