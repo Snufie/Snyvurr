@@ -81,13 +81,18 @@ def verify_token(token):
 @auth.login_required
 def login():
     print("recieved request")
-    data = request.get_json()
-    email = data.get('email')
-    token = create_access_token(identity=email)
-    session['auth_token'] = token
-    session['user'] = email
-    res = jsonify({"token": token}), 200
-    return res
+    try:
+        data = request.get_json()
+        email = data.get('email')
+        token = create_access_token(identity=email)
+        session['auth_token'] = token
+        session['user'] = email
+        res = jsonify({"token": token}), 200
+        return res
+    except Exception as e:
+        with open("error.log", "w+") as f:
+            f.write(f"{e}\n")
+        return jsonify({"error": "Something went wrong"}), 500
 
 
 @app.route('/register', methods=['POST'])
