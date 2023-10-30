@@ -20,7 +20,7 @@ app = Flask(__name__)
 
 # Allow access from front-end
 CORS(app, resources={
-    r"/*": {"origins": API_URL}
+    r"/*": {"origins": "https://snyvurr.onrender.com"}
 }, allow_headers=["Access-Control-Allow-Origin","Content-Type", "Authorization", "X-API-KEY", "X-FROM-FILE", "X-CSRF-TOKEN"], supports_credentials=True)
 
 
