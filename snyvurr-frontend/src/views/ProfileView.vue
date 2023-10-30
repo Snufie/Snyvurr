@@ -107,7 +107,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { getCookie } from 'typescript-cookie';
+
 import { FwbModal } from 'flowbite-vue'
 
 const IsEditing = ref(false)
@@ -119,7 +119,7 @@ const user = ref({ username: '', email: '', verifiedmail: false, phone: '', veri
 const newEmail = ref('')
 const newPhone = ref('')
 const newUname = ref('')
-const access_cookie = ref()
+
 const confirmDelModalOpen = ref(false)
 const confirmDelPsw = ref('')
 const loading = ref(true)
@@ -127,11 +127,7 @@ const CSRF = ref()
 
 
 async function getProfile() {
-    try {
-        access_cookie.value = getCookie('access_token_cookie')
-    } catch (error) {
-        console.log(error)
-    }
+
     await axios.get(`${apiURL}/getUser`,
         {
             headers: {
