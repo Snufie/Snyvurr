@@ -7,7 +7,6 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { useRouter } from 'vue-router'
-import { removeCookie } from 'typescript-cookie';
 
 const router = useRouter()
 
@@ -24,8 +23,6 @@ async function logOut() {
         }
     ).then((response) => {
         if (response.status == 200) {
-            removeCookie('csrf_access_token')
-            removeCookie('access_token_cookie')
             window.location.reload()
             router.push('/')
         }

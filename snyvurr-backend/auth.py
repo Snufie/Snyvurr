@@ -259,7 +259,6 @@ def checkAuth():
         return jsonify({"error": error}), 400
 
 @app.route('/logout', methods=['DELETE'])
-
 def logOut():
     try:
         response = make_response(jsonify({"message": "Successfully logged out"}), 200)
