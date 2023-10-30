@@ -1,4 +1,10 @@
 .vercel
 snyvurr-backend/.env
 snyvurr-backend/test.py
+snyvurr-backend/test.txt
+snyvurr-backend/test3.txt
+snyvurr-backend/test.json
+snyvurr-backend/testdata.json
+snyvurr-backend/new.py
 node_modules
+Snyvurr.code-workspace

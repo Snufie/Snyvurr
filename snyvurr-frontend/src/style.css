@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
 .h1 {
     @apply text-3xl;
     @apply font-bold;
@@ -13,4 +14,183 @@
 .h3 {
     @apply text-xl;
     @apply font-bold
+}
+
+.h1-l {
+    @apply h1;
+    @apply text-left;
+    @apply justify-start
+}
+.h2-l {
+    @apply h2;
+    @apply text-left;
+    @apply justify-start
+}
+.h3-l {
+    @apply h3;
+    @apply text-left;
+    @apply justify-start
+}
+.h1-c {
+    @apply h1;
+    @apply text-center;
+    @apply justify-center
+}
+.h2-c {
+    @apply h2;
+    @apply text-center;
+    @apply justify-center
+}
+.h3-c {
+    @apply h3;
+    @apply text-center;
+    @apply justify-center
+}
+.h1-r {
+    @apply h1;
+    @apply text-right;
+    @apply justify-end
+}
+.h2-r {
+    @apply h2;
+    @apply text-right;
+    @apply justify-end
+}
+.h3-r {
+    @apply h3;
+    @apply text-right;
+    @apply justify-end
+}
+
+.form-button {
+    @apply text-white;
+    @apply bg-vida-loca-500;
+    @apply hover:bg-vida-loca-700;
+    @apply focus:ring-4;
+    @apply focus:outline-none;
+    @apply focus:ring-emerald-300;
+    @apply font-medium;
+    @apply rounded-lg;
+    @apply text-sm;
+    @apply px-5;
+    @apply py-2.5;
+    @apply text-center;
+    @apply dark:bg-emerald-600;
+    @apply dark:hover:bg-emerald-700;
+    @apply dark:focus:ring-emerald-800;
+}
+.form-input {
+    @apply bg-gray-50;
+    @apply border;
+    @apply border-gray-300;
+    @apply text-snytext;
+    @apply text-sm;
+    @apply rounded-lg;
+    @apply focus:ring-emerald-500;
+    @apply focus:border-emerald-500;
+    @apply block;
+    @apply w-full;
+    @apply p-2.5;
+}
+.flex-center {
+    @apply flex;
+    @apply items-center;
+    @apply justify-center;
+}
+.flex-col-center {
+    @apply flex;
+    @apply flex-col;
+    @apply items-center;
+    @apply justify-center;
+}
+.flex-row-center {
+    @apply flex;
+    @apply flex-row;
+    @apply items-center;
+    @apply justify-center;
+}
+.flex-vcenter {
+    @apply flex;
+    @apply items-center;
+}
+.flex-hcenter {
+    @apply flex;
+    @apply justify-center;
+}
+
+.loader {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    transform: rotateZ(45deg);
+    perspective: 1000px;
+    border-radius: 50%;
+    width: 18rem;
+    height: 18rem;
+    color: theme('colors.vida-loca.100');
+}
+
+.loader:before,
+.loader:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: inherit;
+    border-radius: 50%;
+    transform: rotateX(70deg);
+    animation: 1s spin linear infinite;
+}
+
+.loader:after {
+    color: theme('colors.vida-loca.DEFAULT');
+    transform: rotateY(70deg);
+    animation-delay: .4s;
+}
+@keyframes rotate {
+    0% {
+        transform: translate(-50%, -50%) rotateZ(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotateZ(360deg);
+    }
+}
+@keyframes rotateccw {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(-360deg);
+    }
+}
+@keyframes spin {
+    0%,
+    100% {
+        box-shadow: .2em 0px 0 0px currentcolor;
+    }
+    12% {
+        box-shadow: .2em .2em 0 0 currentcolor;
+    }
+    25% {
+        box-shadow: 0 .2em 0 0px currentcolor;
+    }
+    37% {
+        box-shadow: -.2em .2em 0 0 currentcolor;
+    }
+    50% {
+        box-shadow: -.2em 0 0 0 currentcolor;
+    }
+    62% {
+        box-shadow: -.2em -.2em 0 0 currentcolor;
+    }
+    75% {
+        box-shadow: 0px -.2em 0 0 currentcolor;
+    }
+    87% {
+        box-shadow: .2em -.2em 0 0 currentcolor;
+    }
+}
 }

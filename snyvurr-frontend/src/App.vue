@@ -1,16 +1,28 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-// import axios from 'axios';
+
+import { authenticated } from './router/index'
+import { ref } from 'vue'
+
+// const apiKey = import.meta.env.VITE_API_KEY
+// const apiURL = import.meta.env.VITE_API_URL
+const auth = ref(authenticated)
+
 
 </script>
 
 <template>
-  <header v-if="true">
+  <header v-if="!auth">
     <div class="navbar overflow-hidden flex content-center dark:bg-vida-loca-800 dark:text-vida-loca-25">
       <h1 class="h1 self-center ml-4">Snyvurr Network</h1>
       <div class="mx-auto">
-        <RouterLink class="text-2xl hover:text-snytext-lite hover:transition-colors font-bold" to="/">Home</RouterLink>
-        <RouterLink class="text-2xl hover:text-snytext-lite hover:transition-colors font-bold" to="/about">About
+        <RouterLink :key="$route.fullPath"
+          class="text-2xl hover:text-snytext-lite hover:duration-300 hover:transition-colors font-bold" to="/">
+          Home
+        </RouterLink>
+        <RouterLink class="text-2xl hover:text-snytext-lite hover:duration-300 hover:transition-colors font-bold"
+          to="/about">
+          About
         </RouterLink>
       </div>
     </div>
@@ -19,12 +31,20 @@ import { RouterLink, RouterView } from 'vue-router'
     <div class="navbar overflow-hidden flex content-center dark:bg-vida-loca-800 dark:text-vida-loca-25">
       <h1 class="h1 self-center ml-4">Snyvurr Network</h1>
       <div class="mx-auto">
-        <RouterLink class="text-2xl hover:text-snytext-lite hover:transition-colors font-bold" to="/">Home</RouterLink>
-        <RouterLink class="text-2xl hover:text-snytext-lite hover:transition-colors font-bold" to="/profile">Profile
+        <RouterLink :key="$route.fullPath"
+          class="text-2xl hover:text-snytext-lite hover:duration-300 hover:transition-colors font-bold" to="/">
+          Home
         </RouterLink>
-        <RouterLink class="text-2xl hover:text-snytext-lite hover:transition-colors font-bold" to="/social">Connect
+        <RouterLink class="text-2xl hover:text-snytext-lite hover:duration-300 hover:transition-colors font-bold"
+          to="/profile">
+          Profile
         </RouterLink>
-        <RouterLink class="text-2xl hover:text-snytext-lite hover:transition-colors font-bold" to="/functions">Utilities
+        <RouterLink class="text-2xl hover:text-snytext-lite hover:duration-300 hover:transition-colors font-bold"
+          to="/social">
+          Connect
+        </RouterLink>
+        <RouterLink class="text-2xl hover:text-snytext-lite hover:duration-300 hover:transition-colors font-bold"
+          to="/functions">Utilities
         </RouterLink>
       </div>
     </div>
@@ -46,7 +66,10 @@ import { RouterLink, RouterView } from 'vue-router'
           <RouterLink to="/privacy-policy" class="mr-4 hover:underline md:mr-6">Privacy Policy</RouterLink>
         </li>
         <li>
-          <RouterLink to="/contact" class="hover:underline">Contact</RouterLink>
+          <RouterLink to="/contact" class="mr-4 md:mr-6 hover:underline">Contact</RouterLink>
+        </li>
+        <li v-if="auth">
+          <RouterLink to="/logout" class="hover:underline">Logout</RouterLink>
         </li>
       </ul>
     </div>
@@ -85,9 +108,12 @@ import { RouterLink, RouterView } from 'vue-router'
 }
 
 header a:hover {
-  transition: color 0.2s ease-in-out;
   transition: background-color 0.2s ease-in-out;
-  color: var(--text-hover);
+  background-color: var(--primary-alt);
+}
+
+header a.router-link-exact-active {
+  color: var(--text-light);
   background-color: var(--primary-alt);
 }
 </style>
