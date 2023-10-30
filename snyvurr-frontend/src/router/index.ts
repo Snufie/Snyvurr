@@ -63,10 +63,9 @@ const router = createRouter({
   ]
 })
 
-// const apiURL = import.meta.env.VITE_API_URL
-// const apiKey = import.meta.env.VITE_API_KEY
-const apiKey = 'boobies';
-const apiURL = 'http://127.0.0.1:5000';
+const apiURL = import.meta.env.VITE_API_URL
+const apiKey = import.meta.env.VITE_API_KEY
+
 const authenticated= ref(false);
 
 router.beforeEach(async (to,from, next) => {
