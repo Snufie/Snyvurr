@@ -50,7 +50,7 @@
                 class="px-4 py-2 text-vida-loca-25 bg-vida-loca-400 rounded-md my-2 mx-auto">I accept the rules</button>
         </div>
 
-        <Modal size="2xl" v-if="createAcc" class="max-w-2xl">
+        <fwb-modal size="2xl" v-if="createAcc" class="max-w-2xl">
             <template #header>
                 <div class="text-center w-full">
                     <h1 class="h1 font-bold">Create SnyChat profile</h1>
@@ -67,13 +67,13 @@
                     </form>
                 </div>
             </template>
-        </Modal>
+        </fwb-modal>
     </main>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { Modal } from 'flowbite-vue'
+import { FwbModal } from 'flowbite-vue'
 
 
 const chatName = ref('')
